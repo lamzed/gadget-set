@@ -42,7 +42,7 @@ public class Breath {
                 // for all the file that you want
                 // end with the suffixs you set
                 for (String suffix : suffixs) {
-                    if (each_file.getName().endsWith(suffix)){
+                    if (each_file.getName().endsWith(suffix)) {
                         all_target_file.add(each_file);
                     }
                 }
@@ -53,7 +53,7 @@ public class Breath {
         }
     }
 
-    private static void result(){
+    private static void result() {
         System.out.println();
         System.out.println("all file type: ");
         System.out.println(all_file_type);
@@ -64,7 +64,7 @@ public class Breath {
         System.out.println("all same name file: ");
         Set<Map.Entry<String, String>> get = same_name_file.entrySet();
         for (Map.Entry<String, String> e : get) {
-            System.out.println(e.getKey()+": "+e.getValue());
+            System.out.println(e.getKey() + ": " + e.getValue());
         }
         System.out.println();
 
@@ -72,7 +72,7 @@ public class Breath {
 
         Set<Map.Entry<String, String>> get_ = same_size_file.entrySet();
         for (Map.Entry<String, String> e : get_) {
-            System.out.println(e.getKey()+": "+e.getValue());
+            System.out.println(e.getKey() + ": " + e.getValue());
         }
     }
 
@@ -99,45 +99,46 @@ public class Breath {
         initialize();
     }
 
-    private static void search(){
+    private static void search() {
         System.out.println("running plz wait...");
         forAllTypeAndAllTarget(file);
         killRepeatAndSameSize();
     }
+
     // duplicate killer
-    private static void killRepeatAndSameSize(){
+    private static void killRepeatAndSameSize() {
         // for all file'name that are same, put them as key in map
         // and the value are their path
         for (int i = 0; i < all_target_file.size(); i++) {
-            for (int j = i+1; j < all_target_file.size(); j++) {
+            for (int j = i + 1; j < all_target_file.size(); j++) {
                 File fileI = all_target_file.get(i);
                 File fileJ = all_target_file.get(j);
                 String tmp_path = fileI.getAbsolutePath() + ", " + fileJ.getAbsolutePath();
 
                 // if two file name are same and path are not
                 if (fileI.getName().equals(fileJ.getName())
-                &&!fileI.getAbsolutePath().equals(fileJ.getAbsolutePath())){
+                        && !fileI.getAbsolutePath().equals(fileJ.getAbsolutePath())) {
                     // the file's name first put in map
-                    if (!same_name_file.containsKey(fileI.getName())){
-                        same_name_file.put(fileI.getName(),tmp_path);
-                    }else {
+                    if (!same_name_file.containsKey(fileI.getName())) {
+                        same_name_file.put(fileI.getName(), tmp_path);
+                    } else {
                         // if file path already exist, then invoke "+" method of String
-                        tmp_path = ", "+fileJ.getAbsolutePath();
+                        tmp_path = ", " + fileJ.getAbsolutePath();
                         String exist_path = fileI.getAbsolutePath();
-                        same_name_file.put(fileI.getName(),exist_path+tmp_path);
+                        same_name_file.put(fileI.getName(), exist_path + tmp_path);
                     }
                 }
 
                 // get all file that size are same while path not
-                if (fileI.length()==fileJ.length()
-                &&!fileI.getAbsolutePath().equals(fileJ.getAbsolutePath())){
+                if (fileI.length() == fileJ.length()
+                        && !fileI.getAbsolutePath().equals(fileJ.getAbsolutePath())) {
                     // if the kay first put in map
-                    if (!same_size_file.containsKey(fileI.getName())){
-                        same_size_file.put(fileI.getName(),tmp_path);
-                    }else {
-                        tmp_path = ", "+fileJ.getAbsolutePath();
+                    if (!same_size_file.containsKey(fileI.getName())) {
+                        same_size_file.put(fileI.getName(), tmp_path);
+                    } else {
+                        tmp_path = ", " + fileJ.getAbsolutePath();
                         String exist_path = fileI.getAbsolutePath();
-                        same_size_file.put(fileI.getName(),exist_path+tmp_path);
+                        same_size_file.put(fileI.getName(), exist_path + tmp_path);
                     }
                 }
                 // System.out.println("?"+fileI+"::"+fileJ);
