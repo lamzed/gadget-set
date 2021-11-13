@@ -1,11 +1,16 @@
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DuplicateKiller {
-    private static final String TARGET_PATH = "E:\\temp";
+    private static final String TARGET_PATH = "E:\\tmp";
     private static File targetFolder;
     // fileURL and md5
     private static Map<String, String> allFileAndMD5;
@@ -14,7 +19,19 @@ public class DuplicateKiller {
     private static int tmpDelCount;
     private static int totalFolderDel;
 
-    private static void init() throws IOException {
+    public static void main(String[] args) throws IOException {
+        new DuplicateKiller().start();
+    }
+
+    private void start() throws IOException {
+        init();
+        rmDuplicate(targetFolder);
+        rmTorrent();
+        doDeleteEmptyFolder(targetFolder);
+        toBeContinue();
+    }
+
+    private void init() throws IOException {
         // hope u can have fun
         System.out.println("############################");
         System.out.println("# welcome2 DuplicateKiller #");
@@ -28,19 +45,13 @@ public class DuplicateKiller {
         totalFolderDel = 0;
     }
 
-    public static void main(String[] args) throws IOException {
-        init();
-        rmDuplicate(targetFolder);
-        doDeleteEmptyFolder(targetFolder);
-        toBeContinue();
-        // todo 耗时
-    }
-
-    private static void rmDuplicate(File targetFolder) throws IOException {
+    private void rmDuplicate(File targetFolder) throws IOException {
         File[] files = targetFolder.listFiles();
+        assert files != null;
         for (File each : files) {
             if (each.isFile()) {
                 String URL = each.getAbsolutePath();
+                System.out.println(URL);
                 FileInputStream in = new FileInputStream(URL);
                 String md5Hex = DigestUtils.md5Hex(in);
                 in.close();
@@ -77,7 +88,7 @@ public class DuplicateKiller {
         }
     }
 
-    private static void doDeleteEmptyFolder(File targetFolder) throws IOException {
+    private void doDeleteEmptyFolder(File targetFolder) throws IOException {
         System.out.println("############################");
         System.out.println("begin del empty folders...");
         int round = 0;
@@ -90,7 +101,7 @@ public class DuplicateKiller {
         } while (tmpDelCount != 0);
     }
 
-    private static void deleteEmptyFolder(File file) throws IOException {
+    private void deleteEmptyFolder(File file) throws IOException {
         File[] files = file.listFiles();
         // when files is null means the file above is not folder
         if (files != null) {
@@ -112,7 +123,7 @@ public class DuplicateKiller {
         }
     }
 
-    private static void toBeContinue() throws IOException {
+    private void toBeContinue() throws IOException {
         System.out.println("############################");
 
         System.out.println("total duplicate file del [" + totalFileDel + "]");
@@ -126,5 +137,15 @@ public class DuplicateKiller {
         writer.close();
     }
 
-    private static BufferedWriter writer;
+    private void rmTorrent() throws IOException {
+        List<Path> files = Files.walk(Paths.get(TARGET_PATH)).filter(Files::isRegularFile).collect(Collectors.toList());
+        for (Path file : files) {
+            if (file.getFileName().toString().endsWith(".torrent")) {
+                System.out.println("rm .torrent: " + file);
+                file.toFile().delete();
+            }
+        }
+    }
+
+    private BufferedWriter writer;
 }
