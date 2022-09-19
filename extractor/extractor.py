@@ -22,7 +22,8 @@ if __name__ == '__main__':
 
     targets = []
 
-    for item in os.scandir(folder):
+    for item in os.scandir(path):
+        print(item)
         if item.name.endswith(target_format) and os.path.isfile(item):
             target = item.path.split(".")[0] + output_format
             if not os.path.exists(target):
