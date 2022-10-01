@@ -1,3 +1,5 @@
+package md5demo.src.main.java;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.*;
