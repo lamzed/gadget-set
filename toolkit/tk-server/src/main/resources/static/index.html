@@ -1,0 +1,30 @@
+<html>
+<title>TOOLKIT</title>
+<body>
+<div style="display:flex; align-items:center; justify-content:center; flex-direction:column;">
+    <a>Await Your Command</a>
+    <br>
+</div>
+<form action="/kill" method="post">
+    <input type="text" name="path" placeholder="kill duplicate">
+    <button>killer</button>
+</form>
+<form action="/shorten" method="post">
+    <input type="text" name="path" placeholder="make it shorter">
+    <button>shorten</button>
+</form>
+<form action="/reword" method="post">
+    <input type="text" name="path" placeholder="rename file">
+    <button>reword</button>
+</form>
+<form action="/extract" method="post">
+    <input type="text" name="path" placeholder="extract mp3 from mp4">
+    <button>extractor</button>
+</form>
+<!--<form action="/runner" method="post">-->
+<!--    <input type="text" name="path" placeholder="other script">-->
+<!--    <button>runner</button>-->
+<!--</form>-->
+<button onclick="window.location.href = '/extract'">ballshoot</button>
+</body>
+</html>

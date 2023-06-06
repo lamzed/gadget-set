@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+  datasource:
+    url: jdbc:mysql://192.168.2.168:3306/lamzed_art?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Mysql123.+
+
