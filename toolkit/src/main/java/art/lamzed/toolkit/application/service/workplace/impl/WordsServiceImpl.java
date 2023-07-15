@@ -1,14 +1,14 @@
 package art.lamzed.toolkit.application.service.workplace.impl;
 
-import art.lamzed.toolkit.application.service.workplace.WordService;
+import art.lamzed.toolkit.application.service.workplace.WordsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WordServiceImpl implements WordService {
+public class WordsServiceImpl implements WordsService {
     private final static String CN_RE = "[\\u4e00-\\u9fa5]+";
 
     @Override
-    public String wordCount(String str) {
+    public String wordsCount(String str) {
         int words = 0;
         int letters = 0;
         int numbers = 0;
