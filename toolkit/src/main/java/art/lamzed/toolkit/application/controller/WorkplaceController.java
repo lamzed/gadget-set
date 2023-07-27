@@ -16,6 +16,6 @@ public class WorkplaceController {
 
     @PostMapping("/wordsCount")
     public JsonEntity<?> wordsCount(@RequestBody String str) {
-        return JsonEntity.ok(wordsService.wordsCount(str));
+        return JsonEntity.ok(wordsService.wordCounts(str));
     }
 }

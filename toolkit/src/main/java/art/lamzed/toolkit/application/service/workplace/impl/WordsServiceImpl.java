@@ -8,7 +8,7 @@ public class WordsServiceImpl implements WordsService {
     private final static String CN_RE = "[\\u4e00-\\u9fa5]+";
 
     @Override
-    public String wordsCount(String str) {
+    public String wordCounts(String str) {
         int words = 0;
         int letters = 0;
         int numbers = 0;
