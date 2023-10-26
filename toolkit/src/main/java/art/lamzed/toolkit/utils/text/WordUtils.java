@@ -1,6 +1,6 @@
-package art.lamzed.toolkit.utils;
+package art.lamzed.toolkit.utils.text;
 
-public class TextUtils {
+public class WordUtils {
     private final static String COUNTER_RE = "[\\u4e00-\\u9fa5aA-Za-z0-9]";
     private final static String CN_RE = "[\\u4e00-\\u9fa5]+";
 

@@ -1,8 +1,12 @@
+#logging:
+##  file:
+##    path: E:\repositories\gadget-set\toolkit
+##  file: toolkit.log
+##  level:
+##    root: info
+##    art.lamzed.toolkit: info
+#  config:
+#    classpath: logback-toolkit.xml
 logging:
-#  path: E:\repositories\gadget-set\toolkit
-#  file: toolkit.log
-#  level:
-#    root: info
-#    art.lamzed.toolkit: info
   config:
-    classpath: logback-toolkit.xml
+    logback-toolkit.xml
