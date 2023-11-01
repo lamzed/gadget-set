@@ -70,26 +70,42 @@
 
     <profiles>
         <profile>
-            <id>production</id>
+            <id>workplace</id>
             <properties>
-                <profile.active>prod</profile.active>
+                <profile.active>workplace</profile.active>
             </properties>
         </profile>
         <profile>
             <id>presentation</id>
             <properties>
-                <profile.active>demo</profile.active>
+                <profile.active>presentation</profile.active>
             </properties>
         </profile>
         <profile>
             <id>development</id>
             <properties>
-                <profile.active>dev</profile.active>
+                <profile.active>development</profile.active>
             </properties>
         </profile>
     </profiles>
 
     <build>
+        <finalName>toolkit</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>environments/*</exclude>
+                </excludes>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/${profileActive}</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
