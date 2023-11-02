@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration scan="true" scanPeriod="60 seconds" debug="false">
+<configuration>
+    <inclede resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <inclede resource="org/springframework/boot/logging/logback/console-appender.xml"/>
     <property name="logging.path" value="logs/"/>
     <contextName>art.lamzed.toolkit</contextName>
 
